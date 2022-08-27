@@ -29,3 +29,17 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
+//////////////////////////////////////
+//////////////////////////////////////
+///////// Selecting elements/////////
+console.log(document.documentElement);
+console.log(document.head);
+console.log(document.body);
+
+const allSections = document.querySelectorAll('section');
+console.log(allSections);
+
+console.log(document.getElementById('section--1'));
+const allButtons = document.getElementsByTagName('button');
+console.log(allButtons);
