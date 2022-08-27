@@ -56,3 +56,11 @@ header.append(message);
 // header.prepend(message);
 // header.before(message);
 // header.after(message);
+
+///////// Deleting an element/////////
+document
+  .querySelector('.btn--close-cookie')
+  .addEventListener('click', function (e) {
+    message.remove();
+    // message.parentElement.removeChild(message);
+  });
