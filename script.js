@@ -83,3 +83,23 @@ message.style.height =
 //accessing and setting variable using setProperty
 // message.style.setProperty('font-size', '14px');
 document.documentElement.style.setProperty('--color-primary', 'orangered');
+
+///////// Attributes of an element/////////
+const logo = document.querySelector('.nav__logo');
+console.log(logo);
+console.log(logo.alt);
+console.log(logo.src);
+console.log(logo.getAttribute('src'));
+console.log(logo.className);
+console.log(logo.id);
+
+///////// data attribute on an element/////////
+console.log(logo.getAttribute('data-version-number'));
+console.log(logo.dataset);
+console.log(logo.dataset.versionNumber);
+
+///////// class of an element/////////
+logo.classList.add('c');
+logo.classList.remove('c', 'lo');
+logo.classList.toggle('c');
+logo.classList.contains('c');
