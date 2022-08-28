@@ -10,7 +10,6 @@ const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const header = document.querySelector('.header');
 
 const openModal = function (e) {
-  e.preventDefault();
   modal.classList.remove('hidden');
   overlay.classList.remove('hidden');
 };
@@ -64,3 +63,23 @@ document
     message.remove();
     // message.parentElement.removeChild(message);
   });
+
+///////// Styling an element/////////
+message.style.backgroundColor = '#37383d';
+message.style.width = '120%';
+
+///accessing inline styles
+console.log(message.style.height); //display nothing
+console.log(message.style.backgroundColor); //display color
+console.log(getComputedStyle(message).height); //displays height
+
+//adjusting the height of the message container
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+
+//setting color using custom variables
+// header.style.backgroundColor = 'var(--color-tertiary)';
+
+//accessing and setting variable using setProperty
+// message.style.setProperty('font-size', '14px');
+document.documentElement.style.setProperty('--color-primary', 'orangered');
