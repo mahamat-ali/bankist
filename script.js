@@ -103,3 +103,16 @@ logo.classList.add('c');
 logo.classList.remove('c', 'lo');
 logo.classList.toggle('c');
 logo.classList.contains('c');
+
+///////// scrolling using getBoundingClientRect/////////
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function (e) {
+  const s1Coords = section1.getBoundingClientRect();
+  window.scroll({
+    left: Number(s1Coords.x + window.scrollX),
+    top: Number(s1Coords.top + window.scrollY),
+    behavior: 'smooth',
+  });
+});
