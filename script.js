@@ -108,11 +108,17 @@ logo.classList.contains('c');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 
+// btnScrollTo.addEventListener('click', function (e) {
+//   const s1Coords = section1.getBoundingClientRect();
+//   window.scroll({
+//     left: Number(s1Coords.x + window.scrollX),
+//     top: Number(s1Coords.top + window.scrollY),
+//     behavior: 'smooth',
+//   });
+// });
+
+///////// scrolling without getBoundingClientRect/////////
+
 btnScrollTo.addEventListener('click', function (e) {
-  const s1Coords = section1.getBoundingClientRect();
-  window.scroll({
-    left: Number(s1Coords.x + window.scrollX),
-    top: Number(s1Coords.top + window.scrollY),
-    behavior: 'smooth',
-  });
+  section1.scrollIntoView({ behavior: 'smooth' });
 });
