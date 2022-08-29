@@ -122,3 +122,32 @@ const section1 = document.querySelector('#section--1');
 btnScrollTo.addEventListener('click', function (e) {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
+
+///////// Type of event and events handlers /////////
+const h1 = document.querySelector('h1');
+//The advantage of addEventListener is we can call as many as we want and delete event
+// h1.addEventListener('mouseenter', function () {
+//   alert('addEventHandler: Great! You are reading the heading : D');
+// });
+
+// h1.addEventListener('mouseenter', function () {
+//   alert('Bla bla');
+// });
+
+// h1.onmouseenter = function () {
+//   alert('addEventHandler: Great! You are reading the heading : D');
+// };
+// h1.onmouseenter = function () {
+//   alert('Blna');
+// };
+
+const alertH1 = function () {
+  alert('addEventHandler: Great! You are reading the heading : D');
+  // h1.removeEventListener('mouseenter', alertH1);
+};
+
+h1.addEventListener('mouseenter', alertH1);
+
+setTimeout(() => {
+  h1.removeEventListener('mouseenter', alertH1);
+}, 3000);
