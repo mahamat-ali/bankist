@@ -124,7 +124,7 @@ btnScrollTo.addEventListener('click', function (e) {
 });
 
 ///////// Type of event and events handlers /////////
-const h1 = document.querySelector('h1');
+// const h1 = document.querySelector('h1');
 //The advantage of addEventListener is we can call as many as we want and delete event
 // h1.addEventListener('mouseenter', function () {
 //   alert('addEventHandler: Great! You are reading the heading : D');
@@ -141,13 +141,60 @@ const h1 = document.querySelector('h1');
 //   alert('Blna');
 // };
 
-const alertH1 = function () {
-  alert('addEventHandler: Great! You are reading the heading : D');
-  // h1.removeEventListener('mouseenter', alertH1);
-};
+// const alertH1 = function () {
+//   alert('addEventHandler: Great! You are reading the heading : D');
+//   // h1.removeEventListener('mouseenter', alertH1);
+// };
 
-h1.addEventListener('mouseenter', alertH1);
+// h1.addEventListener('mouseenter', alertH1);
 
-setTimeout(() => {
-  h1.removeEventListener('mouseenter', alertH1);
-}, 3000);
+// setTimeout(() => {
+//   h1.removeEventListener('mouseenter', alertH1);
+// }, 3000);
+
+///////// Event bubbling in practice /////////
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1)) + min + 1;
+
+const randomRGB = () =>
+  `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+
+const link = document.querySelector('.nav__link');
+const links = document.querySelector('.nav__links');
+const nav = document.querySelector('.nav');
+
+let first;
+
+link.addEventListener('click', function (e) {
+  console.log('LINK', e.target, e.currentTarget);
+
+  this.style.backgroundColor = randomRGB();
+  first = '1';
+  console.log('====================================');
+  console.log(first);
+  console.log('====================================');
+  //// stop propagation
+  // e.stopPropagation();
+});
+
+links.addEventListener('click', function (e) {
+  console.log('LINKS', e.target, e.currentTarget);
+  this.style.backgroundColor = randomRGB();
+  first = '2';
+  console.log('====================================');
+  console.log(first);
+  console.log('====================================');
+});
+
+nav.addEventListener(
+  'click',
+  function (e) {
+    console.log('NAV', e.target, e.currentTarget);
+    this.style.backgroundColor = randomRGB();
+    first = '3';
+    console.log('====================================');
+    console.log(first);
+    console.log('====================================');
+  },
+  true //Capturing false
+);
