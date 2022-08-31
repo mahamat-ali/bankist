@@ -245,3 +245,26 @@ message.style.height =
 //   },
 //   true //Capturing false
 // );
+
+///////// DOM traversing /////////
+
+// 1-downward
+const h1 = document.querySelector('h1');
+console.log(h1.querySelector('.highlight'));
+// console.log((h1.firstElementChild.style.backgroundColor = 'red'));
+// console.log((h1.lastElementChild.style.backgroundColor = 'blue'));
+// 2-upward
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+console.log(h1.closest('h1'));
+// 3-sideways
+console.log(h1.nextElementSibling);
+console.log(h1.previousElementSibling);
+console.log(h1.previousSibling);
+// console.log(h1.closest('h1')..children);
+[...h1.parentElement.children].forEach(el => {
+  if (el !== h1) {
+    // el.style.transform = 'scaleY(1.8)';
+    el.style.color = 'red';
+  }
+});
