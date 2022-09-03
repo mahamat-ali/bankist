@@ -81,6 +81,33 @@ btnScrollTo.addEventListener('click', function (e) {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
+///////// DOM traversing /////////
+
+///////// BUILDING TABBED COMPONENT /////////
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+document
+  .querySelector('.operations__tab-container')
+  .addEventListener('click', function (e) {
+    // const currentTab = e.target;
+
+    const currentTab = e.target.closest('.operations__tab');
+
+    if (!currentTab || !currentTab.classList.contains('operations__tab'))
+      return;
+
+    tabs.forEach(tab => tab.classList.remove('operations__tab--active'));
+    tabsContent.forEach(content =>
+      content.classList.remove('operations__content--active')
+    );
+
+    currentTab.classList.add('operations__tab--active');
+    document
+      .querySelector(`.operations__content--${currentTab.dataset.tab}`)
+      .classList.add('operations__content--active');
+  });
+
 //////////////////////////////////////
 //////////////////////////////////////
 
@@ -249,22 +276,22 @@ message.style.height =
 ///////// DOM traversing /////////
 
 // 1-downward
-const h1 = document.querySelector('h1');
-console.log(h1.querySelector('.highlight'));
-// console.log((h1.firstElementChild.style.backgroundColor = 'red'));
-// console.log((h1.lastElementChild.style.backgroundColor = 'blue'));
-// 2-upward
-console.log(h1.parentNode);
-console.log(h1.parentElement);
-console.log(h1.closest('h1'));
-// 3-sideways
-console.log(h1.nextElementSibling);
-console.log(h1.previousElementSibling);
-console.log(h1.previousSibling);
-// console.log(h1.closest('h1')..children);
-[...h1.parentElement.children].forEach(el => {
-  if (el !== h1) {
-    // el.style.transform = 'scaleY(1.8)';
-    el.style.color = 'red';
-  }
-});
+// const h1 = document.querySelector('h1');
+// console.log(h1.querySelector('.highlight'));
+// // console.log((h1.firstElementChild.style.backgroundColor = 'red'));
+// // console.log((h1.lastElementChild.style.backgroundColor = 'blue'));
+// // 2-upward
+// console.log(h1.parentNode);
+// console.log(h1.parentElement);
+// console.log(h1.closest('h1'));
+// // 3-sideways
+// console.log(h1.nextElementSibling);
+// console.log(h1.previousElementSibling);
+// console.log(h1.previousSibling);
+// // console.log(h1.closest('h1')..children);
+// [...h1.parentElement.children].forEach(el => {
+//   if (el !== h1) {
+//     // el.style.transform = 'scaleY(1.8)';
+//     el.style.color = 'red';
+//   }
+// });
