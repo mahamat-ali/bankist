@@ -13,6 +13,7 @@ const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const header = document.querySelector('.header');
 const logo = document.querySelector('.nav__logo');
+const nav = document.querySelector('.nav');
 
 ///////// Modal /////////
 const openModal = function (e) {
@@ -107,6 +108,71 @@ document
       .querySelector(`.operations__content--${currentTab.dataset.tab}`)
       .classList.add('operations__content--active');
   });
+
+///////// MOUSE FADE IN /////////
+const navLinks = document.querySelectorAll('.nav__link');
+const navLogo = document.querySelector('.nav__logo');
+
+const fadeInHandler = function (e) {
+  if (
+    e.target.classList.contains('nav__link') ||
+    e.target.classList.contains('nav__logo')
+  ) {
+    navLinks.forEach(link => (link.style.opacity = `${this}`));
+    navLogo.style.opacity = `${this}`;
+
+    e.target.style.opacity = '1';
+  }
+};
+// const fadeInHandler = function (opacity) {
+//   return function (e) {
+//     if (
+//       e.target.classList.contains('nav__link') ||
+//       e.target.classList.contains('nav__logo')
+//     ) {
+//       navLinks.forEach(link => (link.style.opacity = `${opacity}`));
+//       navLogo.style.opacity = `${opacity}`;
+
+//       e.target.style.opacity = '1';
+//     }
+//   };
+// };
+
+nav.addEventListener('mouseover', fadeInHandler.bind(0.5));
+// document.querySelector('.nav').addEventListener('mouseover', function (e) {
+//   if (
+//     e.target.classList.contains('nav__link') ||
+//     e.target.classList.contains('nav__logo')
+//   ) {
+//     navLinks.forEach(link => (link.style.opacity = '0.5'));
+//     navLogo.style.opacity = '0.5';
+
+//     e.target.style.opacity = '1';
+//   }
+// });
+
+document
+  .querySelector('.nav')
+  .addEventListener('mouseout', fadeInHandler.bind(1));
+// document.querySelector('.nav').addEventListener('mouseout', function (e) {
+//   if (
+//     e.target.classList.contains('nav__link') ||
+//     e.target.classList.contains('nav__logo')
+//   ) {
+//     navLinks.forEach(link => (link.style.opacity = '1'));
+//     navLogo.style.opacity = '1';
+
+//     e.target.style.opacity = '1';
+//   }
+// });
+
+///////// STICKY NAV //////////////////
+const navTopCoord = section1.getBoundingClientRect().top;
+window.addEventListener('scroll', function () {
+  if (window.scrollY + nav.getBoundingClientRect().height > navTopCoord)
+    nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+});
 
 //////////////////////////////////////
 //////////////////////////////////////
