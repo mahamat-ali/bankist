@@ -203,6 +203,21 @@ const scrollNavObserver = new IntersectionObserver(
 
 scrollNavObserver.observe(header);
 
+///////// Revealing elements on scroll using Intersection observer//////////////////
+const revealingElementObserver = new IntersectionObserver(
+  function (entries, observer) {
+    const [entry] = entries;
+    if (!entry.isIntersecting) return;
+    entry.target.classList.remove('section--hidden');
+    observer.unobserve(entry.target);
+  },
+  { root: null, threshold: 0.15 }
+);
+
+allSections.forEach(section => {
+  revealingElementObserver.observe(section);
+  section.classList.add('section--hidden');
+});
 //////////////////////////////////////
 //////////////////////////////////////
 
