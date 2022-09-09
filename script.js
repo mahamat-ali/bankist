@@ -167,12 +167,41 @@ document
 // });
 
 ///////// STICKY NAV //////////////////
-const navTopCoord = section1.getBoundingClientRect().top;
-window.addEventListener('scroll', function () {
-  if (window.scrollY + nav.getBoundingClientRect().height > navTopCoord)
-    nav.classList.add('sticky');
+// const navTopCoord = section1.getBoundingClientRect().top;
+// window.addEventListener('scroll', function () {
+//   if (window.scrollY + nav.getBoundingClientRect().height > navTopCoord)
+//     nav.classList.add('sticky');
+//   else nav.classList.remove('sticky');
+// });
+
+///////// STICKY NAV using Intersection observer//////////////////
+// const navTopCoord = section1.getBoundingClientRect().top;
+// window.addEventListener('scroll', function () {
+//   if (window.scrollY + nav.getBoundingClientRect().height > navTopCoord)
+//     nav.classList.add('sticky');
+//   else nav.classList.remove('sticky');
+// });
+
+// new IntersectionObserver(function (entries, observer) {}, {threshold: 0.9}).observe(section1);
+const navHeight = nav.getBoundingClientRect().height;
+const observerCallback = function (entries) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) nav.classList.add('sticky');
   else nav.classList.remove('sticky');
-});
+};
+const observerOption = {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`,
+};
+
+const scrollNavObserver = new IntersectionObserver(
+  observerCallback,
+  observerOption
+);
+
+scrollNavObserver.observe(header);
 
 //////////////////////////////////////
 //////////////////////////////////////
